@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  aitestweb-private:
+    image: image/aitestweb-private
+    build:
+      context: .
+      args: 
+        http_proxy: ${HTTP_PROXY}
+        https_proxy: ${HTTPS_PROXY}
+    # env_file:
+    #   - ./.env
+    expose:
+      - "10050"
+    ports:
+      - "10050:10050"
+    volumes:
+      - ./logs:/root/logs
+    network_mode: "host"
+    container_name: aitestweb-private
+    restart: always
